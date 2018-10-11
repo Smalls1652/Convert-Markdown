@@ -1,11 +1,11 @@
-$mdFolder = Get-ChildItem -Path "./src/assets/content/markdown/"
+$mdFolder = Get-ChildItem -Path "././src/assets/content/markdown/"
 
 foreach ($file in $mdFolder) {
     $pageData = ConvertFrom-Markdown -Path $file.FullName | Select-Object -ExpandProperty "HTML"
     $jsxImports = ""
 
-    if (Test-Path "./src/assets/content/configs/$($file.BaseName).json") {
-        $configJson = Get-Content -Path "./src/assets/content/configs/$($file.BaseName).json" | ConvertFrom-Json
+    if (Test-Path "././src/assets/content/configs/$($file.BaseName).json") {
+        $configJson = Get-Content -Path "././src/assets/content/configs/$($file.BaseName).json" | ConvertFrom-Json
 
         if ($configJson.elementChanges) {
             $optionVals = $configJson.elementChanges
@@ -45,5 +45,5 @@ foreach ($file in $mdFolder) {
         
         export default $((Get-Culture).TextInfo.ToTitleCase($file.BaseName));"
 
-    $moduleCode | Out-File -FilePath "./src/assets/content/$($file.BaseName).js"
+    $moduleCode | Out-File -FilePath "././src/assets/content/$($file.BaseName).js"
 }
